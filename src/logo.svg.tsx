@@ -1,6 +1,10 @@
 import React from "react";
 
-const LogoSvg = ({ className }) => {
+interface LogoSvgProps {
+  className?: string;
+}
+
+const LogoSvg: React.FC<LogoSvgProps> = ({ className }) => {
   return (
     <svg
       width="139"
