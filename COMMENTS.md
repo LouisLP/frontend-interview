@@ -9,5 +9,3 @@ I tried matching the styling as closely as possible to the Figma design. I also 
 - The code for the _loading spinner_ is based off one of these: https://cssloaders.github.io/
 
 Thanks for opportunity!
-
-Louis

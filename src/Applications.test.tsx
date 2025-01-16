@@ -5,13 +5,13 @@ import { Application } from "./types/Application";
 const mockApplications: Application[] = [
   {
     id: 1,
-    first_name: "Louis",
-    last_name: "Lascelles-Palys",
+    first_name: "Carson",
+    last_name: "White Basin",
     company: "Test Co",
-    email: "louis@test.com",
+    email: "iwoca@test.com",
     loan_amount: 50000,
-    date_created: "2024-01-01",
-    expiry_date: "2024-02-01",
+    date_created: "2025-01-01",
+    expiry_date: "2025-02-01",
   },
 ];
 
