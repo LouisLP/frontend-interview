@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./SingleApplication.module.css";
 import { Application } from "./types/Application";
+import { formatGBP } from "./helpers/currencies";
 
 interface SingleApplicationProps {
   application: Application;
@@ -25,7 +26,7 @@ const SingleApplication: React.FC<SingleApplicationProps> = ({
       </div>
       <div className={styles.cell}>
         <sub>Loan Amount</sub>
-        {application.loan_amount}
+        {formatGBP(application.loan_amount)}
       </div>
       <div className={styles.cell}>
         <sub>Application Date</sub>
