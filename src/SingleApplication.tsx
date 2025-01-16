@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "./SingleApplication.module.css";
+import { Application } from "./types/Application";
 
-const SingleApplication = ({ application }) => {
+interface SingleApplicationProps {
+  application: Application;
+}
+
+const SingleApplication: React.FC<SingleApplicationProps> = ({
+  application,
+}) => {
   return (
     <div className={styles.SingleApplication}>
       <div className={styles.cell}>
@@ -14,7 +21,7 @@ const SingleApplication = ({ application }) => {
       </div>
       <div className={styles.cell}>
         <sub>Email</sub>
-        {application.email}
+        <a href={`mailto:${application.email}`}>{application.email}</a>
       </div>
       <div className={styles.cell}>
         <sub>Loan Amount</sub>
