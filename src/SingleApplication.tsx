@@ -25,15 +25,15 @@ const SingleApplication: React.FC<SingleApplicationProps> = ({
         <sub>Email</sub>
         <a href={`mailto:${application.email}`}>{application.email}</a>
       </div>
-      <div className={styles.cell}>
+      <div className={styles.cellRight}>
         <sub>Loan Amount</sub>
         {formatGBP(application.loan_amount)}
       </div>
-      <div className={styles.cell}>
+      <div className={styles.cellRight}>
         <sub>Application Date</sub>
         {formatDate(application.date_created)}
       </div>
-      <div className={styles.cell}>
+      <div className={styles.cellRight}>
         <sub>Expiry date</sub>
         {formatDate(application.expiry_date)}
       </div>

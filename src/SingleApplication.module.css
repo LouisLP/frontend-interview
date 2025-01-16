@@ -19,7 +19,6 @@
   font-size: 0.8rem;
   color: #999;
   margin-bottom: 5px;
-  font-weight: normal;
 }
 
 .cell a {
@@ -28,5 +27,27 @@
 }
 
 .cell a:hover {
+  text-decoration: underline;
+}
+
+.cellRight {
+  text-align: right;
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+.cellRight sub {
+  display: block;
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.cellRight a {
+  color: #2b69b6;
+  text-decoration: none;
+}
+
+.cellRight a:hover {
   text-decoration: underline;
 }
