@@ -1,10 +1,14 @@
 import React from "react";
 
-const LogoSvg = ({ className }) => {
+interface LogoSvgProps {
+  className?: string;
+}
+
+const LogoSvg: React.FC<LogoSvgProps> = ({ className }) => {
   return (
     <svg
-      width="139"
-      height="47"
+      width="220"
+      height="100"
       viewBox="0 0 139 47"
       fill="#fb534a"
       className={className}

@@ -1,7 +1,16 @@
 import React from "react";
 import styles from "./SingleApplication.module.css";
+import { Application } from "./types/Application";
+import { formatGBP } from "./helpers/currencies";
+import { formatDate } from "./helpers/dates";
 
-const SingleApplication = ({ application }) => {
+interface SingleApplicationProps {
+  application: Application;
+}
+
+const SingleApplication: React.FC<SingleApplicationProps> = ({
+  application,
+}) => {
   return (
     <div className={styles.SingleApplication}>
       <div className={styles.cell}>
@@ -14,19 +23,19 @@ const SingleApplication = ({ application }) => {
       </div>
       <div className={styles.cell}>
         <sub>Email</sub>
-        {application.email}
+        <a href={`mailto:${application.email}`}>{application.email}</a>
       </div>
-      <div className={styles.cell}>
+      <div className={styles.cellRight}>
         <sub>Loan Amount</sub>
-        {application.loan_amount}
+        {formatGBP(application.loan_amount)}
       </div>
-      <div className={styles.cell}>
+      <div className={styles.cellRight}>
         <sub>Application Date</sub>
-        {application.date_created}
+        {formatDate(application.date_created)}
       </div>
-      <div className={styles.cell}>
+      <div className={styles.cellRight}>
         <sub>Expiry date</sub>
-        {application.expiry_date}
+        {formatDate(application.expiry_date)}
       </div>
     </div>
   );

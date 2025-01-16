@@ -12,3 +12,7 @@
 .logo path {
   fill: #fb534a;
 }
+
+.logo {
+  margin-top: 3rem;
+}
