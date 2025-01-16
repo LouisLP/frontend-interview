@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./SingleApplication.module.css";
 import { Application } from "./types/Application";
 import { formatGBP } from "./helpers/currencies";
+import { formatDate } from "./helpers/dates";
 
 interface SingleApplicationProps {
   application: Application;
@@ -30,11 +31,11 @@ const SingleApplication: React.FC<SingleApplicationProps> = ({
       </div>
       <div className={styles.cell}>
         <sub>Application Date</sub>
-        {application.date_created}
+        {formatDate(application.date_created)}
       </div>
       <div className={styles.cell}>
         <sub>Expiry date</sub>
-        {application.expiry_date}
+        {formatDate(application.expiry_date)}
       </div>
     </div>
   );
