@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Application } from "../types/Application";
+import { applicationsApi } from "../services/applicationsApi";
 
-const API_URL = "http://localhost:3001/api/applications";
 const LIMIT = 5;
 
 export const useApplications = () => {
@@ -16,16 +16,10 @@ export const useApplications = () => {
     setError(null);
 
     try {
-      const response = await fetch(`${API_URL}?_page=${page}&_limit=${LIMIT}`);
+      const { data, hasMore: hasMorePages } =
+        await applicationsApi.getApplications(page, LIMIT);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const linkHeader = response.headers.get("Link");
-
-      setHasMore(linkHeader && linkHeader.includes('rel="next"'));
+      setHasMore(hasMorePages);
       setApplications((prev) => [...prev, ...data]);
     } catch (error) {
       setError(
