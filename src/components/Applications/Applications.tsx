@@ -1,8 +1,8 @@
 import SingleApplication from "./SingleApplication";
-import { Button } from "./ui/Button/Button";
-import { Spinner } from "./ui/Spinner/Spinner";
+import { Button } from "../ui/Button/Button";
+import { Spinner } from "../ui/Spinner/Spinner";
 import styles from "./Applications.module.css";
-import { useApplications } from "./hooks/useApplications";
+import { useApplications } from "../../hooks/useApplications";
 
 const Applications = () => {
   const { applications, isLoading, hasMore, error, loadMore } =

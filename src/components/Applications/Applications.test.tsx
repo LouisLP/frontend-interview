@@ -1,11 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { vi } from "vitest";
 import Applications from "./Applications";
-import { useApplications } from "./hooks/useApplications";
-import { Application } from "./types/Application";
+import { useApplications } from "../../hooks/useApplications";
+import { Application } from "../../types/Application";
 
-// Mock the custom hook
-vi.mock("./hooks/useApplications");
+vi.mock("../../hooks/useApplications", () => ({
+  useApplications: vi.fn(),
+}));
 
 const mockApplications: Application[] = [
   {
