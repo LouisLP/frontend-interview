@@ -9,12 +9,12 @@ vi.mock("./hooks/useApplications");
 
 const mockApplications: Application[] = [
   {
-    id: 1,
+    guid: "1234-abcd",
+    loan_amount: 50000,
     first_name: "Carson",
     last_name: "White Basin",
     company: "Test Co",
     email: "iwoca@test.com",
-    loan_amount: 50000,
     date_created: "2025-01-01",
     expiry_date: "2025-02-01",
   },
