@@ -15,7 +15,7 @@ const Applications = () => {
   return (
     <div className={styles.Applications}>
       {applications.map((application) => (
-        <SingleApplication key={application.id} application={application} />
+        <SingleApplication key={application.guid} application={application} />
       ))}
 
       {isLoading ? (

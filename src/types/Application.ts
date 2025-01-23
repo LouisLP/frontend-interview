@@ -1,10 +1,10 @@
 export type Application = {
-  id: number;
+  guid: string;
+  loan_amount: number;
   first_name: string;
   last_name: string;
   company: string;
   email: string;
-  loan_amount: number;
   date_created: string;
   expiry_date: string;
 };
