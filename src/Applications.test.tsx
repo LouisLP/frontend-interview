@@ -1,6 +1,11 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { vi } from "vitest";
 import Applications from "./Applications";
+import { useApplications } from "./hooks/useApplications";
 import { Application } from "./types/Application";
+
+// Mock the custom hook
+vi.mock("./hooks/useApplications");
 
 const mockApplications: Application[] = [
   {
@@ -18,47 +23,79 @@ const mockApplications: Application[] = [
 describe("Applications", () => {
   beforeEach(() => {
     vi.resetAllMocks();
-    global.fetch = vi.fn();
   });
 
-  test("renders applications and load more button", async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
-      json: async () => mockApplications,
-      headers: new Headers({
-        Link: '<http://localhost:3001/api/applications?_page=2>; rel="next"',
-      }),
+  it("renders applications list and load more button", () => {
+    vi.mocked(useApplications).mockReturnValue({
+      applications: mockApplications,
+      isLoading: false,
+      hasMore: true,
+      error: null,
+      loadMore: vi.fn(),
     });
 
     render(<Applications />);
 
-    await waitFor(() => {
-      expect(screen.getByText("Louis Lascelles-Palys")).toBeInTheDocument();
-      expect(screen.getByText("Load more")).toBeInTheDocument();
-    });
+    expect(screen.getByText("Carson White Basin")).toBeInTheDocument();
+    expect(screen.getByText("Load more")).toBeInTheDocument();
   });
 
-  test("loads more applications on button click", async () => {
-    (global.fetch as jest.Mock)
-      .mockResolvedValueOnce({
-        json: async () => mockApplications,
-        headers: new Headers({
-          Link: '<http://localhost:3001/api/applications?_page=2>; rel="next"',
-        }),
-      })
-      .mockResolvedValueOnce({
-        json: async () => [
-          { ...mockApplications[0], id: 2, company: "Second Co" },
-        ],
-        headers: new Headers({}),
-      });
+  it("shows loading spinner when loading", () => {
+    vi.mocked(useApplications).mockReturnValue({
+      applications: [],
+      isLoading: true,
+      hasMore: true,
+      error: null,
+      loadMore: vi.fn(),
+    });
 
     render(<Applications />);
 
-    const loadMore = await screen.findByText("Load more");
-    fireEvent.click(loadMore);
+    expect(screen.getByTestId("spinner")).toBeInTheDocument();
+  });
 
-    await waitFor(() => {
-      expect(screen.getByText("Second Co")).toBeInTheDocument();
+  it("handles error state", () => {
+    const errorMessage = "Failed to fetch applications";
+    vi.mocked(useApplications).mockReturnValue({
+      applications: [],
+      isLoading: false,
+      hasMore: false,
+      error: errorMessage,
+      loadMore: vi.fn(),
     });
+
+    render(<Applications />);
+
+    expect(screen.getByText(`Error: ${errorMessage}`)).toBeInTheDocument();
+  });
+
+  it("calls loadMore when clicking load more button", () => {
+    const loadMore = vi.fn();
+    vi.mocked(useApplications).mockReturnValue({
+      applications: mockApplications,
+      isLoading: false,
+      hasMore: true,
+      error: null,
+      loadMore,
+    });
+
+    render(<Applications />);
+
+    fireEvent.click(screen.getByText("Load more"));
+    expect(loadMore).toHaveBeenCalledTimes(1);
+  });
+
+  it("hides load more button when hasMore is false", () => {
+    vi.mocked(useApplications).mockReturnValue({
+      applications: mockApplications,
+      isLoading: false,
+      hasMore: false,
+      error: null,
+      loadMore: vi.fn(),
+    });
+
+    render(<Applications />);
+
+    expect(screen.queryByText("Load more")).not.toBeInTheDocument();
   });
 });
