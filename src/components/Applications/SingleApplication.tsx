@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./SingleApplication.module.css";
-import { Application } from "./types/Application";
-import { formatGBP } from "./helpers/currencies";
-import { formatDate } from "./helpers/dates";
+import { Application } from "../../types/Application";
+import { formatGBP } from "../../helpers/currencies";
+import { formatDate } from "../../helpers/dates";
 
 interface SingleApplicationProps {
   application: Application;

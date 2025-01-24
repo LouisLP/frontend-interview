@@ -1,0 +1,84 @@
+.SingleApplication {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0px 5px 16px 0px rgba(173, 200, 215, 0.25);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+}
+
+.cell {
+  text-align: left;
+  padding: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.cell sub {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: normal;
+}
+
+.cell a {
+  color: #2b69b6;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.cell a:hover {
+  text-decoration: underline;
+}
+
+.cellRight {
+  text-align: right;
+  padding: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Tablet and up */
+@media (min-width: 640px) {
+  .SingleApplication {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .cell,
+  .cellRight {
+    border-bottom: none;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .SingleApplication {
+    grid-template-columns: 15% 15% auto 15% 15% 15%;
+    padding: 1.5rem;
+  }
+
+  .cell,
+  .cellRight {
+    display: block;
+    text-align: left;
+  }
+
+  .cell sub,
+  .cellRight sub {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .cellRight {
+    text-align: right;
+  }
+}
